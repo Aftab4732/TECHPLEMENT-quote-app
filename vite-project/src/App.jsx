@@ -10,8 +10,8 @@ function App() {
 
     useEffect(() => {
         fetchRandomQuote();
-        const intervalId = setInterval(fetchRandomQuote, 5000); // Refresh quote every 10 seconds
-        return () => clearInterval(intervalId); // Cleanup function to clear interval
+        const intervalId = setInterval(fetchRandomQuote, 5000); 
+        return () => clearInterval(intervalId);
     }, []);
 
     const fetchRandomQuote = async () => {
@@ -23,20 +23,11 @@ function App() {
       }
     };
 
-    // const handleSearch = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const response = await axios.get(`http://localhost:5000/api/quote?author=${author}`);
-    //         setSearchResults(response.data);
-    //     } catch (error) {
-    //         console.error('Error searching quotes', error);
-    //     }
-    // };
     const handleSearch = async (e) => {
       e.preventDefault();
   
       if (!author) {
-        // Display error message or handle empty search gracefully
+  
         console.warn('Please enter an author name to search');
         return;
       }
@@ -44,7 +35,7 @@ function App() {
       try {
         const searchUrl = `https://api.quotable.io/quotes?author=${author}`;
         const response = await axios.get(searchUrl);
-        setSearchResults(response.data.results); // Update search results
+        setSearchResults(response.data.results); 
       } catch (error) {
         console.error('Error searching quotes', error);
       }
