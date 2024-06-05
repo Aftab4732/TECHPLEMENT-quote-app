@@ -1,6 +1,3 @@
-
-
-
  @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -91,7 +88,7 @@ body {
   cursor: pointer;
   font-size: 24px;
   color: white;
-  z-index: 2; /* Ensure the icon is above the title */
+  z-index: 2; 
 }
 
 .search-container {
