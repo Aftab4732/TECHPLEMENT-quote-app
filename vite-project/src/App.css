@@ -1,14 +1,15 @@
 
-@keyframes fadeIn {
+
+
+ @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgb(253, 253, 253) ;
+  background-color: rgb(253, 253, 253);
   color: black;
-  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,6 +41,7 @@ body {
   border-bottom: 2px solid #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, border-bottom-color 0.3s;
+  z-index: 1;
 }
 
 .title:hover {
@@ -81,14 +83,21 @@ body {
   }
 }
 
+.search-icon {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  z-index: 2; /* Ensure the icon is above the title */
+}
 
 .search-container {
-  position: fixed;
-  display:flexbox ;
-  top: 20px;
-  right: 10px;
-  margin-top: 50px;
+  display: flex;
   align-items: center;
+  margin-top: 50px;
   box-shadow: 0 2px 5px rgb(70, 68, 63);
   padding: 10px;
   background-color: #00000000;
@@ -98,7 +107,6 @@ body {
   padding: 5px;
   border: none;
   border-radius: 5px;
-  border-color: #33333300;
   background-color: rgba(0, 0, 0, 0);
   color: rgb(0, 0, 0);
 }
@@ -121,54 +129,31 @@ body {
   text-align: center;
   background-color: #33333300;
   padding: 20px;
-
   border-radius: 10px;
   transition: background-color 0.3s ease;
-  
 }
+
 .quote {
-  /* background-color: #282c34; */
   padding: 20px;
   border-radius: 10px;
   animation: fadeIn 1s ease-in-out;
   transition: background-color 1s ease-in-out;
 }
+
 .quote-container {
   margin-top: 100px;
 }
- .quote {
+
+.quote {
   font-size: 24px;
-  margin-top: 10px; /* Add margin top to create space below the fixed elements */
+  margin-top: 10px;
   padding: 20px;
 }
 
- .quote  p{
+.quote p {
   margin: 0;
 }
 
-.quote-container .hover {
-  background-color: transparent;
-}
-
-/* .search-results {
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-}
-
-.search-result {
-  justify-content: flex-start;
-  background-color: rgba(255, 202, 117, 0.961);
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-   transition: background-color 0.2s ease; 
-}
-
-.search-result:hover {
-  background-color: transparent;
-} */
 .search-results {
   width: 100%;
   padding: 20px;
@@ -202,5 +187,3 @@ body {
   font-style: italic;
   color: #888;
 }
-
-

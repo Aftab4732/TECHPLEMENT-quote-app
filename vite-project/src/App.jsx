@@ -1,17 +1,18 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FaSearch } from 'react-icons/fa';
 import './App.css';
 
 function App() {
     const [quote, setQuote] = useState({ content: '', author: '' });
     const [author, setAuthor] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [isSearchVisible, setIsSearchVisible] = useState(false);
 
     useEffect(() => {
         fetchRandomQuote();
-        const intervalId = setInterval(fetchRandomQuote, 5000); // Refresh quote every 10 seconds
-        return () => clearInterval(intervalId); // Cleanup function to clear interval
+        const intervalId = setInterval(fetchRandomQuote, 5000); 
+        return () => clearInterval(intervalId); 
     }, []);
 
     const fetchRandomQuote = async () => {
@@ -23,20 +24,11 @@ function App() {
       }
     };
 
-    // const handleSearch = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const response = await axios.get(`http://localhost:5000/api/quote?author=${author}`);
-    //         setSearchResults(response.data);
-    //     } catch (error) {
-    //         console.error('Error searching quotes', error);
-    //     }
-    // };
     const handleSearch = async (e) => {
       e.preventDefault();
   
       if (!author) {
-        // Display error message or handle empty search gracefully
+        
         console.warn('Please enter an author name to search');
         return;
       }
@@ -44,23 +36,32 @@ function App() {
       try {
         const searchUrl = `https://api.quotable.io/quotes?author=${author}`;
         const response = await axios.get(searchUrl);
-        setSearchResults(response.data.results); // Update search results
+        setSearchResults(response.data.results); 
       } catch (error) {
         console.error('Error searching quotes', error);
       }
     };
+
     return (
         <div className="app">
-            <div className="title">Quote of the Day</div>
-            <div className="search-container">
-                <input 
-                    type="text" 
-                    placeholder="Search by author" 
-                    value={author}
-                    onChange={(e) => setAuthor(e.target.value)}
+            <div className="title">
+                Quote of the Day
+                <FaSearch 
+                    className="search-icon" 
+                    onClick={() => setIsSearchVisible(!isSearchVisible)} 
                 />
-                <button onClick={handleSearch}>Search</button>
             </div>
+            {isSearchVisible && (
+                <div className="search-container">
+                    <input 
+                        type="text" 
+                        placeholder="Search by author" 
+                        value={author}
+                        onChange={(e) => setAuthor(e.target.value)}
+                    />
+                    <button onClick={handleSearch}>Search</button>
+                </div>
+            )}
             <div className="quote-container">
                 <div className="quote" style={{ animation: 'fadeIn 1s ease-in-out' }}>
                     <p>"{quote.content}"</p>
@@ -84,3 +85,4 @@ function App() {
 }
 
 export default App;
+
